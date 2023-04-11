@@ -1,4 +1,5 @@
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
 
 /**
@@ -8,6 +9,7 @@ import java.util.Queue;
  */
 
 public class NumIslands {
+    public List<Integer> list=new LinkedList<>();
     public int numIslands(char[][] grid) {
         int count = 0;
         for (int i = 0; i < grid.length; i++) {
