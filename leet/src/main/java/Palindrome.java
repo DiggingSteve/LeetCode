@@ -35,4 +35,23 @@ public class Palindrome {
         return s.substring(maxEnd - maxLen + 1, maxEnd + 1);
 
     }
+
+    public Boolean isPalindrome(int x){
+        int maxDiv=10;
+        if(x<0)return false;
+        if(x<10)return true;
+        while (x/maxDiv>=10){
+            maxDiv*=10;//确定最大除数 用于取最高位整数
+        }
+        while (maxDiv>=10){
+            int left=x/maxDiv;
+            int right=x%10;
+            if(left!=right)return  false;
+
+            x=x%maxDiv/10;
+            maxDiv=maxDiv/100;
+
+        }
+        return  true;
+    }
 }
