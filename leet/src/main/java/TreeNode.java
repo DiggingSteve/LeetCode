@@ -1,6 +1,5 @@
 
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Stack;
 
@@ -11,11 +10,16 @@ import java.util.Stack;
  */
 
 public class TreeNode {
-    public String val;
+    public String value;
+    public  int val;
     public TreeNode left;
     public TreeNode right;
 
     public TreeNode(String x){
+        value =x;
+    }
+
+    public TreeNode (int x){
         val=x;
     }
     public TreeNode(){
@@ -24,7 +28,7 @@ public class TreeNode {
 
     @Override
     public String toString(){
-        return "["+val+"]";
+        return "["+ value +"]";
     }
 
     // 棧完成前序遍歷
@@ -133,4 +137,29 @@ public class TreeNode {
         int c= Math.max(leftDepth,rightDepth)+1;
         return c;
     }
+
+    //1026 节点与其祖先之间的最大差值
+    // 思路 dfs查找父子之间最大 和最小节点 因为差值取绝对值 不需要父节点大于子节点
+    int ans=0;
+    public int maxAncestorDiff(TreeNode root) {
+
+        dfs(root,root.val, root.val);
+
+        return  ans;
+    }
+
+    private void dfs(TreeNode node,int maxNum,int minNum){
+        if(node==null)return;
+        if(node.val >maxNum){
+            maxNum=node.val;
+        }
+        if(node.val<minNum){
+            minNum=node.val;
+        }
+      ans=Math.max(ans,Math.abs(maxNum-minNum));
+        dfs(node.left,maxNum,minNum);
+        dfs(node.right,maxNum,minNum);
+    }
+
+
 }
